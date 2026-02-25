@@ -2386,13 +2386,13 @@ L_1_[93] = {
 }
 L_1_[93]["Info"]:AddSection("Information")
 L_1_[93]["Info"]:AddDiscordInvite({
-	["Name"] = "Banana Hub",
+	["Name"] = "RauMa Hub",
 	["Description"] = L_1_[2]({
 		"Skibidi";
 		"tolet"
 	}),
 	["Logo"] = L_1_[2]({
-		"rbxassetid://",
+		"",
 		""
 	}),
 	
