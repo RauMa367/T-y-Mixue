@@ -2392,7 +2392,7 @@ L_1_[93]["Info"]:AddDiscordInvite({
 		"tolet"
 	}),
 	["Logo"] = L_1_[2]({
-		"rbxassetid://72646789463387",
+		"https://create.roblox.com/dashboard/creations/store/72646789463387/configure",
 		""
 	
 	})
