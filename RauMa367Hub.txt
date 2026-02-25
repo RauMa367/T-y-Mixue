@@ -2392,7 +2392,7 @@ L_1_[93]["Info"]:AddDiscordInvite({
 		"tolet"
 	}),
 	["Logo"] = L_1_[2]({
-		"rbxassetid://",
+		"rbxassetid://72646789463387",
 		""
 	
 	})
