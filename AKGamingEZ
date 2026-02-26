@@ -1,0 +1,301 @@
+--[[
+
+    🛡️ GARDEN HORIZONS SECURITY SYSTEM - AK GAMING EZ🛡️
+
+    ----------------------------------------------------------
+
+    ● Phiên bản: 9.5 (Final Global Edition)
+
+    ● Chức năng: Full Farming, Shop, World, Player, Anti-AFK
+
+    ● Hiệu ứng: Loading Screen -> Professional Hub -> 15s Ban
+
+    ----------------------------------------------------------
+
+--]]
+
+local player = game.Players.LocalPlayer
+
+local gui = Instance.new("ScreenGui", game.CoreGui)
+
+gui.Name = "GardenUltimatePremium"
+
+gui.DisplayOrder = 9999999
+
+gui.IgnoreGuiInset = true 
+
+-- 1. GIAO DIỆN LOADING (Premium Aesthetic)
+
+local MainFrame = Instance.new("Frame", gui)
+
+MainFrame.Size = UDim2.new(1, 0, 1, 0)
+
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+
+MainFrame.BackgroundTransparency = 0.1 
+
+local Title = Instance.new("TextLabel", MainFrame)
+
+Title.Size = UDim2.new(1, 0, 0.2, 0)
+
+Title.Position = UDim2.new(0, 0, 0.35, 0)
+
+Title.Text = "🌟 GARDEN HORIZONS – ULTIMATE 🌟"
+
+Title.TextSize = 50
+
+Title.Font = Enum.Font.GothamBold
+
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+
+Title.BackgroundTransparency = 1
+
+local Gradient = Instance.new("UIGradient", Title)
+
+Gradient.Color = ColorSequence.new({
+
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 127)),
+
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(255, 255, 255)),
+
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 127))
+
+})
+
+local Status = Instance.new("TextLabel", MainFrame)
+
+Status.Size = UDim2.new(1, 0, 0.05, 0)
+
+Status.Position = UDim2.new(0, 0, 0.5, 0)
+
+Status.Text = "✨ Đang xác thực chứng chỉ Admin Premium..."
+
+Status.TextColor3 = Color3.fromRGB(200, 200, 200)
+
+Status.TextSize = 20
+
+Status.Font = Enum.Font.Code
+
+Status.BackgroundTransparency = 1
+
+local BarBg = Instance.new("Frame", MainFrame)
+
+BarBg.Size = UDim2.new(0, 400, 0, 4)
+
+BarBg.Position = UDim2.new(0.5, -200, 0.55, 0)
+
+BarBg.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+
+BarBg.BorderSizePixel = 0
+
+local BarFill = Instance.new("Frame", BarBg)
+
+BarFill.Size = UDim2.new(0, 0, 1, 0)
+
+BarFill.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+
+BarFill.BorderSizePixel = 0
+
+----------------------------------------------------------------
+
+-- 2. HÀM KHỞI CHẠY MENU SIÊU CẤP (FULL CHỨC NĂNG)
+
+----------------------------------------------------------------
+
+local function StartUltimateMenu()
+
+    local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+
+    local Window = Fluent:CreateWindow({
+
+        Title = "GARDEN HORIZONS 🌟",
+
+        SubTitle = "Garden Horizons - AK Gaming EZ",
+
+        TabWidth = 160,
+
+        Size = UDim2.fromOffset(620, 520),
+
+        Acrylic = true,
+
+        Theme = "Darker",
+
+        MinimizeKey = Enum.KeyCode.RightControl
+
+    })
+
+    local Tabs = {
+
+        Farming = Window:AddTab({ Title = "Nông Trại", Icon = "leaf" }),
+
+        Economy = Window:AddTab({ Title = "Kinh Tế", Icon = "banknote" }),
+
+        Shop = Window:AddTab({ Title = "Cửa Hàng", Icon = "shopping-cart" }),
+
+        World = Window:AddTab({ Title = "Thế Giới", Icon = "map" }),
+
+        Player = Window:AddTab({ Title = "Nhân Vật", Icon = "user" })
+
+    }
+
+    local Options = Fluent.Options
+
+    -- [TAB NÔNG TRẠI - ĐẦY ĐỦ CHỨC NĂNG]
+
+    Tabs.Farming:AddParagraph({Title = "Quản Lý Vườn Siêu Cấp"})
+
+    local AutoPlant = Tabs.Farming:AddToggle("AutoPlant", {Title = "Tự Động Gieo Hạt (Fast)", Default = true})
+
+    local AutoWater = Tabs.Farming:AddToggle("AutoWater", {Title = "Tự Động Tưới Nước", Default = true})
+
+    local AutoLush = Tabs.Farming:AddToggle("AutoLush", {Title = "Thu Hoạch Cây Lush (x3 Tiền)", Default = true})
+
+    local AutoCollect = Tabs.Farming:AddToggle("AutoCollect", {Title = "Tự Động Nhặt Đồ Rơi", Default = true})
+
+    
+
+    -- Logic Farm (Hoạt động thực tế trong 15s)
+
+    task.spawn(function()
+
+        while task.wait(0.5) do
+
+            pcall(function()
+
+                local RS = game:GetService("ReplicatedStorage")
+
+                if Options.AutoPlant.Value then RS.Events.PlantSeed:FireServer() end
+
+                if Options.AutoWater.Value then RS.Events.WaterCrops:FireServer() end
+
+                if Options.AutoLush.Value then RS.Events.HarvestCrops:FireServer() end
+
+            end)
+
+        end
+
+    end)
+
+    -- [TAB KINH TẾ]
+
+    Tabs.Economy:AddToggle("AutoSell", {Title = "Auto Bán Sản Phẩm (Steve)", Default = true})
+
+    Tabs.Economy:AddToggle("AutoRebirth", {Title = "Auto Chuyển Sinh", Default = false})
+
+    Tabs.Economy:AddToggle("AutoBuyLand", {Title = "Auto Mở Rộng Đất", Default = false})
+
+    -- [TAB CỬA HÀNG]
+
+    Tabs.Shop:AddDropdown("SeedType", {
+
+        Title = "Hạt Giống Muốn Mua",
+
+        Values = {"Carrot", "Corn", "Onion", "Strawberry", "Mushroom", "Dawnfruit"},
+
+        Default = "Carrot"
+
+    })
+
+    Tabs.Shop:AddToggle("AutoBuySeeds", {Title = "Auto Mua Hạt Khi Hết", Default = true})
+
+    Tabs.Shop:AddButton({
+
+        Title = "Mở Khóa Toàn Bộ Công Cụ",
+
+        Callback = function() print("Đã mở khóa dụng cụ!") end
+
+    })
+
+    -- [TAB THẾ GIỚI]
+
+    Tabs.World:AddButton({Title = "Dịch Chuyển Đến Shop", Callback = function() player.Character.HumanoidRootPart.CFrame = CFrame.new(125, 5, 45) end})
+
+    Tabs.World:AddToggle("AntiAFK", {Title = "Chống Treo Máy", Default = true})
+
+    -- [TAB NHÂN VẬT]
+
+    Tabs.Player:AddSlider("WalkSpeed", {Title = "Tốc Độ", Default = 16, Min = 16, Max = 250, Rounding = 1, Callback = function(v) player.Character.Humanoid.WalkSpeed = v end})
+
+    Tabs.Player:AddToggle("InfJump", {Title = "Nhảy Vô Hạn", Default = false})
+
+    -- [THÔNG BÁO QUAN TRỌNG]
+
+    Fluent:Notify({
+
+        Title = "XÁC THỰC THÀNH CÔNG",
+
+        Content = "Chào mừng Admin! Hệ thống sẽ đồng bộ hóa hoàn toàn trong 15 giây...",
+
+        Duration = 15
+
+    })
+
+    -- 🕒 ĐẾM NGƯỢC 15 GIÂY ĐỂ BAN (KICK)
+
+    task.spawn(function()
+
+        task.wait(15)
+
+        player:Kick("\[Hệ Thống Bảo Mật Garden Horizons]\n\nTài khoản của bạn đã bị khóa vĩnh viễn.\nLý do: Phát hiện hành vi can thiệp trái phép (Hack/Cheating).")
+
+    end)
+
+end
+
+----------------------------------------------------------------
+
+-- 3. TIẾN TRÌNH THỰC THI (LOADING -> HUB -> BAN)
+
+----------------------------------------------------------------
+
+task.spawn(function()
+
+    for i = 1, 100 do
+
+        Gradient.Rotation = Gradient.Rotation + 4
+
+        BarFill.Size = UDim2.new(i/100, 0, 1, 0)
+
+        
+
+        if i == 12 then Status.Text = "🔄 Đang vượt rào bảo mật... 12%" 
+
+        elseif i == 47 then Status.Text = "🔄 Tiêm Script vào máy chủ... 47%" 
+
+        elseif i == 89 then Status.Text = "🔄 Cấp quyền truy cập Player... 89%" 
+
+        elseif i == 100 then Status.Text = "✅ Truy cập thành công! Đang nạp Hub..." 
+
+        end
+
+        task.wait(0.04)
+
+    end
+
+    
+
+    task.wait(0.5)
+
+    -- Hiệu ứng tắt mờ dần Loading
+
+    local TweenService = game:GetService("TweenService")
+
+    local info = TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out)
+
+    TweenService:Create(MainFrame, info, {BackgroundTransparency = 1}):Play()
+
+    TweenService:Create(Title, info, {TextTransparency = 1}):Play()
+
+    TweenService:Create(Status, info, {TextTransparency = 1}):Play()
+
+    TweenService:Create(BarBg, info, {BackgroundTransparency = 1}):Play()
+
+    TweenService:Create(BarFill, info, {BackgroundTransparency = 1}):Play()
+
+    task.wait(0.5)
+
+    gui:Destroy()
+
+    StartUltimateMenu() 
+
+end)
