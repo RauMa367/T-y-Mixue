@@ -2390,10 +2390,6 @@ L_1_[93]["Info"]:AddDiscordInvite({
 	["Description"] = L_1_[2]({
 		"Skibidi";
 		"tolet"
-	}),
-	["Logo"] = L_1_[2]({
-		"https://create.roblox.com/dashboard/creations/store/72646789463387/configure",
-		""
 	
 	})
 })
